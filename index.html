@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        .main{
+            height: auto;
+            width: auto;
+            border: 3px solid black;
+            border-radius: 10px;
+        }
+        .form{
+            height: auto;
+            width: auto;
+            margin: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        #Heading , #Description , #news_category, #name {
+            width: 400px;
+         
+        }
+            
+       
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="form">
+            <div id="newsFormContainer">
+
+    <label for="news_heading">Enter Heading &nbsp;&nbsp;</label><br>
+                    <input type="text"  id="Heading" required/><br>
+
+  <label for="news_description">Enter Description</label> <br>
+
+  <textarea id="Description" rows="4" required></textarea><br>
+
+  <label for="">Enter Author's Name&nbsp;&nbsp;</label>  <br>
+
+                    <input type="text"  id="Name" required/><br>
+
+ 
+
+<label>Category&nbsp;&nbsp;</label> <br>
+                    <select id="News_category" required>
+                        <option value="Politics">Politics</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Entertainment">Entertainment</option> 
+                        <option value="International">International</option> 
+                        
+                    </select><br>
+                    <label>Date&nbsp;&nbsp;</label> <br>
+                     <input id="Date" type="date"><br>
+
+                    <label>File&nbsp;&nbsp;</label> <br> <input type="file" accept="image/jpeg, image/png, image/jpg" id="acc">
+                  <br>
+                    <input  id="navigateButton"  type="button"  onclick="fun(event)" value="submit" >
+                    <!-- <button  id="navigateButton" >Submit</button> -->
+         
+        </div>
+    </div>
+<script >
+
+
+function fun(event) {
+    var heading=document.getElementById('Heading').value
+    localStorage.setItem('heading',heading)
+
+    var description =document.getElementById('Description').value
+    localStorage.setItem('description',description)
+
+    var name =document.getElementById('Name').value
+    localStorage.setItem('Name',name)
+    var news_category =document.getElementById('News_category').value
+    localStorage.setItem('News_category',news_category)
+
+    var date =document.getElementById('Date').value
+    localStorage.setItem('Date',date)
+
+
+
+
+    var b = document.getElementById('acc');
+    if (b.files.length > 0) {
+        var file = b.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            localStorage.setItem("Image", reader.result);
+            window.location.href = "main.html";
+        };
+        reader.readAsDataURL(file);
+    } else {
+        console.error("No file selected.");
+    }
+}
+
+</script>
+
+
+</body>
+</html>
